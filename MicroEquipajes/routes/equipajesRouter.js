@@ -14,11 +14,11 @@ router.get('/obtenerTodos', async (req, res) => {
 
 router.get('/obtenerPorId/:id', async (req, res) => {
     try {
-      const tiquete = await Tiquetes.findById(req.params.id);
-      if (!tiquete) {
-        return res.status(404).json({ message: 'Tiquete no encontrado' });
+      const equipaje = await Equipajes.findById(req.params.id);
+      if (!equipaje) {
+        return res.status(404).json({ message: 'Equipaje no encontrado' });
       }
-      res.json(tiquete);
+      res.json(equipaje);
     } catch (error) {
       res.status(500).json({ message: 'Error al buscar el producto por ID' });
     }
@@ -56,9 +56,9 @@ router.get('/obtenerPorId/:id', async (req, res) => {
 
 router.post("/agregar", async(req,res)=>{
     try{
-        const nuevoTiquete = new Tiquetes(req.body);
-        await nuevoTiquete.save();
-        res.status(201).json(nuevoTiquete);
+        const nuevoEquipaje = new Equipajes(req.body);
+        await nuevoEquipaje.save();
+        res.status(201).json(nuevoEquipaje);
     }
     catch(err){
         res.status(400).json({message:err.message})
@@ -67,9 +67,9 @@ router.post("/agregar", async(req,res)=>{
 
 router.delete("/eliminar/:id", async(req,res)=>{
   try{
-      const tiqueteEliminado = await Tiquetes.findByIdAndDelete(req.params.id);
-      if(!tiqueteEliminado) return res.status(404).json({message:"Tiquetes no encontrado"});
-      res.json({message:"Tiquetes Eliminado"});
+      const equipajeEliminado = await Equipajes.findByIdAndDelete(req.params.id);
+      if(!equipajeEliminado) return res.status(404).json({message:"Equipaje no encontrado"});
+      res.json({message:"Equipaje Eliminado"});
   }
   catch(err){
       res.status(400).json({message:err.message})
@@ -77,16 +77,18 @@ router.delete("/eliminar/:id", async(req,res)=>{
 });
 
 
-router.put('/putTiquete/:id', async (req,res)=>{
+router.put('/putEquipaje/:id', async (req,res)=>{
     try{
-        const tiqueteActualizado=await Tiquetes.findByIdAndUpdate(req.params.id,req.body,{new:true});
-        if(!tiqueteActualizado) return res.status(404).json({message:"Reparación no encontrado"})
-            res.json(tiqueteActualizado)
+        const equipajeActualizado=await Equipajes.findByIdAndUpdate(req.params.id,req.body,{new:true});
+        if(!equipajeActualizado) return res.status(404).json({message:"Equipaje no encontrado"});
+            res.json(equipajeActualizado)
     }
     catch(err){
         res.status(500).json({message:err.message})
     }
 })
+
+
 
 //Realizar los 5 procedimientos, buscar todos, buscar por id y buscar por dos parametros
 

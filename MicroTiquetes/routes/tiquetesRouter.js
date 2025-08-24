@@ -80,7 +80,7 @@ router.delete("/eliminar/:id", async(req,res)=>{
 router.put('/putTiquete/:id', async (req,res)=>{
     try{
         const tiqueteActualizado=await Tiquetes.findByIdAndUpdate(req.params.id,req.body,{new:true});
-        if(!tiqueteActualizado) return res.status(404).json({message:"Reparación no encontrado"})
+        if(!tiqueteActualizado) return res.status(404).json({message:"Tiquete no encontrado"});
             res.json(tiqueteActualizado)
     }
     catch(err){

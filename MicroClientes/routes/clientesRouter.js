@@ -49,7 +49,7 @@ router.get('/obtenerPorId/:id', async (req, res) => {
   
       res.json(clientes);
     } catch (error) {
-      res.status(500).json({ message: 'Error al buscar tiquetes por parámetros' });
+      res.status(500).json({ message: 'Error al buscar clientes por parámetros' });
     }
   });
 
@@ -68,8 +68,8 @@ router.post("/agregar", async(req,res)=>{
 router.delete("/eliminar/:id", async(req,res)=>{
   try{
       const clienteEliminado = await Clientes.findByIdAndDelete(req.params.id);
-      if(!clienteEliminado) return res.status(404).json({message:"Tiquetes no encontrado"});
-      res.json({message:"Tiquetes Eliminado"});
+      if(!clienteEliminado) return res.status(404).json({message:"Cliente no encontrado"});
+      res.json({message:"Cliente Eliminado"});
   }
   catch(err){
       res.status(400).json({message:err.message})
@@ -80,7 +80,7 @@ router.delete("/eliminar/:id", async(req,res)=>{
 router.put('/putCliente/:id', async (req,res)=>{
     try{
         const clienteActualizado=await Clientes.findByIdAndUpdate(req.params.id,req.body,{new:true});
-        if(!clienteActualizado) return res.status(404).json({message:"Reparación no encontrado"})
+        if(!clienteActualizado) return res.status(404).json({message:"Cliente no encontrado"})
             res.json(clienteActualizado)
     }
     catch(err){
