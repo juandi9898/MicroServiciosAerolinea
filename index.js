@@ -1,5 +1,5 @@
 const express = require('express');
-const mongoose = require('mongoose');//Se puede guiar de este para hacer
+const mongoose = require('mongoose');
 const bodyParser = require('body-parser');
 const cors = require('cors'); // ✅ Importa cors
 
